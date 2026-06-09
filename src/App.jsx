@@ -14,11 +14,19 @@ const BRAND = {
 const AIRTABLE_TOKEN = "patZNTStI8thqUWe7.72a149c13c617ebb99ec0e485ce7e86a4704633dc1781cd873296fe09296508c";
 
 ;
-const AIRTABLE_BASE  = "appKEeClXYe8gT7JC";
-const AIRTABLE_TABLE = "Leads";
-const CALENDLY_URL   = "https://calendly.com/gregory-cultureofcleanliness/ai-consulting-discovery-call";
+const FORMSPREE_URL = "https://formspree.io/f/xqeobpnq";
+const CALENDLY_URL  = "https://calendly.com/gregory-cultureofcleanliness/ai-consulting-discovery-call";
 
-async function submitToAirtable(form) {
+async function submitForm(form) {
+  const res = await fetch(FORMSPREE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify(form)
+  });
+  if (!res.ok) throw new Error("Submission failed");
+  return res.json();
+}
+
   const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
     method: "POST",
     headers: {
@@ -57,7 +65,8 @@ function IntakeForm() {
     setLoading(true);
     setError(null);
     try {
-      await submitToAirtable(form);
+      await submitForm(form);
+
       setSubmitted(true);
     } catch (e) {
       setError("Something went wrong. Please try again.");
