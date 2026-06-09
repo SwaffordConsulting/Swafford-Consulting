@@ -11,7 +11,8 @@ const BRAND = {
   border:      "#d4cfc6",
 };
 
-const AIRTABLE_TOKEN = const AIRTABLE_TOKEN = "patZNTStI8thqUWe7.72a149c13c617ebb99ec0e485ce7e86a4704633dc1781cd873296fe09296508c";
+const AIRTABLE_TOKEN = "patZNTStI8thqUWe7.72a149c13c617ebb99ec0e485ce7e86a4704633dc1781cd873296fe09296508c";
+
 ;
 const AIRTABLE_BASE  = "appKEeClXYe8gT7JC";
 const AIRTABLE_TABLE = "Leads";
